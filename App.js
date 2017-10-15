@@ -7,6 +7,8 @@ import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import reducer from './reducers';
 import DeckList from './components/DeckList';
 import CreateDeck from './components/CreateDeck';
+import AddQuestion from './components/AddQuestion';
+import Quiz from './components/Quiz';
 import Deck from './components/Deck';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Constants } from 'expo'
@@ -62,12 +64,18 @@ const MainNavigator = StackNavigator({
     screen: Tabs,
     navigationOptions: { title: "UdaciCards" }
   },
+	AddQuestion: {
+		screen: AddQuestion
+	},
   DeckList: {
     screen: DeckList
   },
   Deck: {
     screen: Deck
   },
+	Quiz: {
+		screen: Quiz
+	}
 });
 
 export default class App extends React.Component {

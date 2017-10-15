@@ -5,25 +5,24 @@ import {purple, white} from '../utils/colors';
 
 const Deck = ({navigation}) => {
 	const {deck} = navigation.state.params;
-	console.log(deck.questions);
-
-	addQuestion = () => {
-		console.log('Add question');
-	};
-	startQuiz = () => {
-		console.log('Start quiz');
-	};
 
 	return (
 		<View style={styles.container}>
 			<Text style={styles.deck}>{deck.title}</Text>
 			<Text>{deck.questions.length} Questions</Text>
-			<TouchableOpacity style={styles.btnContainer} onPress={this.startQuiz}>
+			<TouchableOpacity style={styles.btnContainer}
+				onPress={() => navigation.navigate(
+					'Quiz',
+					{deck: deck}
+				)}>
 				<Text style={styles.btnTitle}>Start quiz</Text>
 			</TouchableOpacity>
 			<TouchableOpacity
 				 style={styles.btnContainer}
-				 onPress={this.addNewQuestion}
+				 onPress={() => navigation.navigate(
+					 'AddQuestion',
+					 {deck: deck}
+				 )}
 			 >
 				 <Text style={styles.btnTitle}>Add question to deck</Text>
 			 </TouchableOpacity>
