@@ -1,16 +1,35 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
-import {purple, white} from '../utils/colors'
+import {purple, white} from '../utils/colors';
 
-export default function Deck ({deck}) {
-	return(
-		<View>		
+const Deck = ({navigation}) => {
+	const {deck} = navigation.state.params;
+	console.log(deck.questions);
+
+	addQuestion = () => {
+		console.log('Add question');
+	};
+	startQuiz = () => {
+		console.log('Start quiz');
+	};
+
+	return (
+		<View style={styles.container}>
 			<Text style={styles.deck}>{deck.title}</Text>
+			<Text>{deck.questions.length} Questions</Text>
+			<TouchableOpacity style={styles.btnContainer} onPress={this.startQuiz}>
+				<Text style={styles.btnTitle}>Start quiz</Text>
+			</TouchableOpacity>
+			<TouchableOpacity
+				 style={styles.btnContainer}
+				 onPress={this.addNewQuestion}
+			 >
+				 <Text style={styles.btnTitle}>Add question to deck</Text>
+			 </TouchableOpacity>
 		</View>
-	)	
-}
-
+	);
+};
 
 const styles = StyleSheet.create({
 	container: {
@@ -19,12 +38,29 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	deck: {
-    backgroundColor: purple,
+		backgroundColor: purple,
 		color: white,
-    borderRadius: 2,
-    justifyContent: 'center',
+		borderRadius: 2,
+		justifyContent: 'center',
 		fontSize: 32,
-    textAlign: 'center',
+		textAlign: 'center',
 		marginTop: 20,
-  },
-})
+	},
+	title: {
+		fontSize: 40,
+	},
+	btnContainer: {
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center',				
+		marginTop: 15,
+		width: 250,
+		maxHeight: 50,
+	},
+	btnTitle: {
+		fontSize: 20,
+		marginTop: 10,
+	},
+});
+
+export default connect(state => state)(Deck);
