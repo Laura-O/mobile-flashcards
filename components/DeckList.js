@@ -1,28 +1,28 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, TouchableOpacity,} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import Deck from './Deck';
-import { List, ListItem } from 'react-native-elements'
+import {List, ListItem} from 'react-native-elements';
 import {neutral, white, black, carbon, drose} from '../utils/colors';
 
 class DeckList extends Component {
 	render() {
-		const decks = Object.keys(this.props.decks);		
-		
+		const decks = Object.keys(this.props.decks);
+
 		if (!decks) {
 			<Text>No decks found</Text>;
 		}
 		return (
 			<List>
 				{decks.map(deck => (
-					<ListItem						
+					<ListItem
 						key={deck}
-						onPress={() => this.props.navigation.navigate(
-              'Deck',
-              {deckTitle: this.props.decks[deck].title},
-            )}						
-					title={this.props.decks[deck].title}
-				/>		
+						onPress={() =>
+							this.props.navigation.navigate('Deck', {
+								deckTitle: this.props.decks[deck].title,
+							})}
+						title={this.props.decks[deck].title}
+					/>
 				))}
 			</List>
 		);

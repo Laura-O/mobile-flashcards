@@ -5,17 +5,16 @@ import {Divider, Button, Badge} from 'react-native-elements';
 import {purple, white, aqua, black, sunshine, drose} from '../utils/colors';
 
 class Deck extends Component {
-	
 	render() {
-		const { decks, navigation } = this.props;
+		const {decks, navigation} = this.props;
 		const title = navigation.state.params.deckTitle;
-		const deck = decks[navigation.state.params.deckTitle];		
-		
+		const deck = decks[navigation.state.params.deckTitle];
+
 		return (
 			<View style={styles.container}>
 				<Text style={styles.title}>{deck.title}</Text>
 				<Divider style={{height: 30, backgroundColor: sunshine}} />
-				<Badge containerStyle={{ backgroundColor: aqua}}>
+				<Badge containerStyle={{backgroundColor: aqua}}>
 					<Text>{deck.questions.length} Questions</Text>
 				</Badge>
 				<View style={styles.buttons}>
@@ -31,7 +30,8 @@ class Deck extends Component {
 						large
 						icon={{name: 'add-circle-outline'}}
 						backgroundColor={sunshine}
-						onPress={() => navigation.navigate('AddQuestion', {deck: deck.title})}
+						onPress={() =>
+							navigation.navigate('AddQuestion', {deck: deck.title})}
 						buttonStyle={{borderRadius: 20, width: 200}}
 						title="Add question"
 					/>
@@ -39,14 +39,14 @@ class Deck extends Component {
 			</View>
 		);
 	}
-};
+}
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,		
+		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
-		marginTop: 20,		
+		marginTop: 20,
 	},
 	deck: {
 		backgroundColor: purple,
@@ -57,8 +57,8 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		marginTop: 20,
 	},
-	title: {		
-		fontSize: 40,		
+	title: {
+		fontSize: 40,
 		color: black,
 	},
 	buttons: {

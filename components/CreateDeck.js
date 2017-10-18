@@ -20,7 +20,7 @@ class CreateDeck extends Component {
 	};
 
 	onSubmit = () => {
-		const {title} = this.state;		
+		const {title} = this.state;
 
 		this.setState({title: ''});
 		this.props.dispatch(createDeck(title));

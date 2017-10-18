@@ -40,23 +40,23 @@ function Deck(state = initialState, action) {
 				decks: {
 					...state.decks,
 					[action.title.toLowerCase()]: {
-            title: action.title,
-            questions: []
-          }					
-				}
+						title: action.title,
+						questions: [],
+					},
+				},
 			};
 		case ADD_QUESTION:
-	      const { id, question } = action;
-	      return {
-	        ...state,
-	        decks: {
-	          ...state.decks,
-	          [id]: {
-	            ...state.decks[id],
-	            questions: [...state.decks[id].questions, question]
-	          }
-	        }
-	      };	
+			const {id, question} = action;
+			return {
+				...state,
+				decks: {
+					...state.decks,
+					[id]: {
+						...state.decks[id],
+						questions: [...state.decks[id].questions, question],
+					},
+				},
+			};
 		default:
 			return state;
 	}

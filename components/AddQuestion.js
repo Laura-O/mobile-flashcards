@@ -17,7 +17,7 @@ class AddQuestion extends Component {
 
 	saveQuestion = () => {
 		const deckTitle = this.props.navigation.state.params.deck;
-		const {question, answer} = this.state;		
+		const {question, answer} = this.state;
 		this.props.dispatch(addQuestion(deckTitle, {question, answer}));
 		this.props.navigation.goBack();
 	};
