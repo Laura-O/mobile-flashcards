@@ -1,40 +1,51 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
-import {purple, white} from '../utils/colors';
+import {Divider, Button, Badge} from 'react-native-elements';
+import {purple, white, aqua, black, sunshine, drose} from '../utils/colors';
 
-const Deck = ({navigation}) => {
-	const {deck} = navigation.state.params;
-
-	return (
-		<View style={styles.container}>
-			<Text style={styles.deck}>{deck.title}</Text>
-			<Text>{deck.questions.length} Questions</Text>
-			<TouchableOpacity style={styles.btnContainer}
-				onPress={() => navigation.navigate(
-					'Quiz',
-					{deck: deck}
-				)}>
-				<Text style={styles.btnTitle}>Start quiz</Text>
-			</TouchableOpacity>
-			<TouchableOpacity
-				 style={styles.btnContainer}
-				 onPress={() => navigation.navigate(
-					 'AddQuestion',
-					 {deck: deck}
-				 )}
-			 >
-				 <Text style={styles.btnTitle}>Add question to deck</Text>
-			 </TouchableOpacity>
-		</View>
-	);
+class Deck extends Component {
+	
+	render() {
+		const { decks, navigation } = this.props;
+		const deck = decks[navigation.state.params.deckTitle];		
+		
+		return (
+			<View style={styles.container}>
+				<Text style={styles.title}>{deck.title}</Text>
+				<Divider style={{height: 30, backgroundColor: sunshine}} />
+				<Badge containerStyle={{ backgroundColor: aqua}}>
+					<Text>{deck.questions.length} Questions</Text>
+				</Badge>
+				<View style={styles.buttons}>
+					<Button
+						large
+						backgroundColor={sunshine}
+						icon={{name: 'question-answer'}}
+						onPress={() => navigation.navigate('Quiz', {deck: deck})}
+						buttonStyle={{borderRadius: 20, width: 200, margin: 20}}
+						title="Start quiz"
+					/>
+					<Button
+						large
+						icon={{name: 'add-circle-outline'}}
+						backgroundColor={sunshine}
+						onPress={() => navigation.navigate('AddQuestion', {deck: deck})}
+						buttonStyle={{borderRadius: 20, width: 200}}
+						title="Add question"
+					/>
+				</View>
+			</View>
+		);
+	}
 };
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
+		flex: 1,		
 		alignItems: 'center',
 		justifyContent: 'center',
+		marginTop: 20,		
 	},
 	deck: {
 		backgroundColor: purple,
@@ -45,20 +56,17 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		marginTop: 20,
 	},
-	title: {
-		fontSize: 40,
+	title: {		
+		fontSize: 40,		
+		color: black,
 	},
-	btnContainer: {
+	buttons: {
 		flex: 1,
 		alignItems: 'center',
-		justifyContent: 'center',				
-		marginTop: 15,
-		width: 250,
-		maxHeight: 50,
+		justifyContent: 'center',
 	},
-	btnTitle: {
-		fontSize: 20,
-		marginTop: 10,
+	buttonStyle: {
+		color: drose,
 	},
 });
 

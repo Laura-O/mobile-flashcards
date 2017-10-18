@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity,} from 'react-native';
 import {connect} from 'react-redux';
 import Deck from './Deck';
-import {purple, white} from '../utils/colors';
+import { List, ListItem } from 'react-native-elements'
+import {neutral, white, black, carbon, drose} from '../utils/colors';
 
 class DeckList extends Component {
 	render() {
@@ -12,21 +13,18 @@ class DeckList extends Component {
 			<Text>No decks found</Text>;
 		}
 		return (
-			<View>
+			<List>
 				{decks.map(deck => (
-					<TouchableOpacity
+					<ListItem						
 						key={deck}
 						onPress={() => this.props.navigation.navigate(
               'Deck',
-              {deck: this.props.decks[deck]}
-            )}
-						>
-					<Text key={deck} style={styles.deck}>
-						{this.props.decks[deck].title}
-					</Text>
-					</TouchableOpacity>
+              {deckTitle: this.props.decks[deck].title},
+            )}						
+					title={this.props.decks[deck].title}
+				/>		
 				))}
-			</View>
+			</List>
 		);
 	}
 }
@@ -36,10 +34,11 @@ const styles = StyleSheet.create({
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
+		backgroundColor: white,
 	},
 	deck: {
-		backgroundColor: purple,
-		color: white,
+		backgroundColor: drose,
+		color: black,
 		borderRadius: 2,
 		justifyContent: 'center',
 		fontSize: 32,

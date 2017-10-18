@@ -1,3 +1,5 @@
+import {CREATE_DECK} from '../actions';
+
 const testState = {
 	React: {
 		title: 'React',
@@ -31,6 +33,17 @@ const initialState = {
 
 function Deck(state = initialState, action) {
 	switch (action.type) {
+		case CREATE_DECK:
+			return {
+				...state,
+				decks: {
+					...state.decks,
+					[action.title.toLowerCase()]: {
+            title: action.title,
+            questions: []
+          }					
+				}
+			};
 		default:
 			return state;
 	}

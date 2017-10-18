@@ -12,7 +12,7 @@ import Quiz from './components/Quiz';
 import Deck from './components/Deck';
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Constants } from 'expo'
-import { purple, white } from './utils/colors'
+import { aqua, lavender, white, sky, black, watermelon, carbon } from './utils/colors'
 
 const store = createStore(reducer);
 
@@ -44,18 +44,19 @@ const Tabs = TabNavigator({
     header: null
   },
   tabBarOptions: {
-    activeTintColor: Platform.OS === 'ios' ? purple : white,
+    activeTintColor: Platform.OS === 'ios' ? purple : black,
+		inactiveTintColor: black,
     style: {
       height: 56,
-      backgroundColor: purple,
-      shadowColor: 'rgba(0, 0, 0, 0.24)',
+      backgroundColor: aqua,      
       shadowOffset: {
         width: 0,
         height: 3
-      },
+      },			
       shadowRadius: 6,
       shadowOpacity: 1
-    }
+    },
+		indicatorStyle: { backgroundColor: lavender},
   }
 })
 
