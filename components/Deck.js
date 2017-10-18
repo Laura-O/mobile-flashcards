@@ -8,6 +8,7 @@ class Deck extends Component {
 	
 	render() {
 		const { decks, navigation } = this.props;
+		const title = navigation.state.params.deckTitle;
 		const deck = decks[navigation.state.params.deckTitle];		
 		
 		return (
@@ -30,7 +31,7 @@ class Deck extends Component {
 						large
 						icon={{name: 'add-circle-outline'}}
 						backgroundColor={sunshine}
-						onPress={() => navigation.navigate('AddQuestion', {deck: deck})}
+						onPress={() => navigation.navigate('AddQuestion', {deck: deck.title})}
 						buttonStyle={{borderRadius: 20, width: 200}}
 						title="Add question"
 					/>

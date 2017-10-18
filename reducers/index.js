@@ -1,4 +1,5 @@
 import {CREATE_DECK} from '../actions';
+import {ADD_QUESTION} from '../actions';
 
 const testState = {
 	React: {
@@ -44,6 +45,18 @@ function Deck(state = initialState, action) {
           }					
 				}
 			};
+		case ADD_QUESTION:
+	      const { id, question } = action;
+	      return {
+	        ...state,
+	        decks: {
+	          ...state.decks,
+	          [id]: {
+	            ...state.decks[id],
+	            questions: [...state.decks[id].questions, question]
+	          }
+	        }
+	      };	
 		default:
 			return state;
 	}
