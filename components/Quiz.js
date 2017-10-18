@@ -40,8 +40,7 @@ class Quiz extends Component {
 	render() {
 		const deck = this.props.navigation.state.params.deck;
 		const questions = this.props.navigation.state.params.deck.questions;
-		const { index, score, allAsked } = this.state;
-		console.log(questions);				
+		const { index, score, allAsked } = this.state;		
 		
 		if (!questions) {
 			return (

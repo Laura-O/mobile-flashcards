@@ -37,7 +37,7 @@ class Question extends Component {
 								}}
 							/>
 							<Button
-								title="Wrong"
+								title="Incorrect"
 								backgroundColor={sunshine}
 								icon={{name: 'thumb-down'}}
 								onPress={() => {
