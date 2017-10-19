@@ -47,7 +47,7 @@ const Tabs = TabNavigator(
 		CreateDeck: {
 			screen: CreateDeck,
 			navigationOptions: {
-				tabBarLabel: 'Add Entry',
+				tabBarLabel: 'Add Deck',
 				tabBarIcon: ({tintColor}) => (
 					<FontAwesome name="plus-square" size={30} color={tintColor} />
 				),
