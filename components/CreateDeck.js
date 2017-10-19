@@ -13,10 +13,16 @@ import {createDeck} from '../actions';
 class CreateDeck extends Component {
 	state = {
 		title: '',
+		empty: true,
 	};
 
 	onChangeTitle = title => {
 		this.setState({title: title});
+		{
+			title.length > 0
+				? this.setState({empty: false})
+				: this.setState({empty: true});
+		}
 	};
 
 	onSubmit = () => {
@@ -39,8 +45,12 @@ class CreateDeck extends Component {
 					value={this.state.title}
 					onChangeText={this.onChangeTitle}
 				/>
+				{this.state.empty && (
+					<FormValidationMessage>Please enter a name</FormValidationMessage>
+				)}
 				<Button
 					onPress={this.onSubmit.bind(this)}
+					disabled={this.state.empty ? true : false}
 					icon={{name: 'done'}}
 					buttonStyle={{marginTop: 15}}
 					title="SUBMIT"
