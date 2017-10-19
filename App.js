@@ -79,7 +79,7 @@ const Tabs = TabNavigator(
 const MainNavigator = StackNavigator({
 	Home: {
 		screen: Tabs,
-		navigationOptions: {title: 'UdaciCards'},
+		navigationOptions: {title: 'FlashCards'},
 	},
 	AddQuestion: {
 		screen: AddQuestion,

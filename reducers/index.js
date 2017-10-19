@@ -1,35 +1,35 @@
 import {CREATE_DECK} from '../actions';
 import {ADD_QUESTION} from '../actions';
+import {GET_DECKS} from '../actions';
 
-const testState = {
-	React: {
-		title: 'React',
-		questions: [
-			{
-				question: 'What is React?',
-				answer: 'A library for managing user interfaces',
-			},
-			{
-				question: 'Where do you make Ajax requests in React?',
-				answer: 'The componentDidMount lifecycle event',
-			},
-		],
-	},
-	JavaScript: {
-		title: 'JavaScript',
-		questions: [
-			{
-				question: 'What is a closure?',
-				answer:
-					'The combination of a function and the lexical environment within which that function was declared.',
-			},
-		],
-	},
-};
+// const testState = {
+// 	React: {
+// 		title: 'React',
+// 		questions: [
+// 			{
+// 				question: 'What is React?',
+// 				answer: 'A library for managing user interfaces',
+// 			},
+// 			{
+// 				question: 'Where do you make Ajax requests in React?',
+// 				answer: 'The componentDidMount lifecycle event',
+// 			},
+// 		],
+// 	},
+// 	JavaScript: {
+// 		title: 'JavaScript',
+// 		questions: [
+// 			{
+// 				question: 'What is a closure?',
+// 				answer:
+// 					'The combination of a function and the lexical environment within which that function was declared.',
+// 			},
+// 		],
+// 	},
+// };
 
 const initialState = {
-	decks: testState,
-	selectedDeck: '',
+	decks: {},	
 };
 
 function Deck(state = initialState, action) {
@@ -44,6 +44,11 @@ function Deck(state = initialState, action) {
 						questions: [],
 					},
 				},
+			};
+		case GET_DECKS:
+			return {
+				...state,
+				decks: action.decks,
 			};
 		case ADD_QUESTION:
 			const {id, question} = action;
