@@ -35,7 +35,7 @@ class CreateDeck extends Component {
 				<FormLabel>Name</FormLabel>
 				<FormInput
 					placeholder="Deck name"
-					value={title}
+					value={this.state.title}
 					onChangeText={this.onChangeTitle}
 				/>
 				<Button
