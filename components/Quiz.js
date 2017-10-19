@@ -45,14 +45,14 @@ class Quiz extends Component {
 
 	back = () => {
 		this.props.navigation.navigate('Deck', {
-			deck: this.props.navigation.state.params.deck,
+			deckTitle: this.props.navigation.state.params.deck.title,
 		});
 	};
 
 	render() {
 		const deck = this.props.navigation.state.params.deck;
 		const questions = this.props.navigation.state.params.deck.questions;
-		const {index, score, allAsked} = this.state;
+		const {index, score, allAsked} = this.state;		
 
 		if (!questions) {
 			return (
