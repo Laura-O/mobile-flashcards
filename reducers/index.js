@@ -39,7 +39,7 @@ function Deck(state = initialState, action) {
 				...state,
 				decks: {
 					...state.decks,
-					[action.title.toLowerCase()]: {
+					[action.title]: {
 						title: action.title,
 						questions: [],
 					},
