@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, Keyboard} from 'react-native';
 import {connect} from 'react-redux';
 import {purple, white} from '../utils/colors';
 import {
@@ -24,6 +24,7 @@ class CreateDeck extends Component {
 
 		this.setState({title: ''});
 		this.props.dispatch(createDeck(title));
+		Keyboard.dismiss();
 		this.props.navigation.navigate('Deck', {deckTitle: title});
 	};
 
