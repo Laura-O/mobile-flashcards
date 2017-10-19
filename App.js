@@ -51,7 +51,7 @@ const Tabs = TabNavigator(
 			header: null,
 		},
 		tabBarOptions: {
-			activeTintColor: Platform.OS === 'ios' ? purple : black,
+			activeTintColor: black,
 			inactiveTintColor: black,
 			style: {
 				height: 56,
