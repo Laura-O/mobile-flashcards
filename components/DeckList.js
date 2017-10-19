@@ -6,6 +6,11 @@ import {List, ListItem} from 'react-native-elements';
 import {neutral, white, black, carbon, drose} from '../utils/colors';
 
 class DeckList extends Component {
+	state = {
+		showUpOpacity: 0		
+	}
+	
+	
 	render() {
 		const decks = Object.keys(this.props.decks);
 

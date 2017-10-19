@@ -1,19 +1,30 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity, Animated} from 'react-native';
 import {connect} from 'react-redux';
 import {Divider, Button, Badge} from 'react-native-elements';
 import {purple, lavender,white, aqua, black, sunshine, drose, gray} from '../utils/colors';
 
 class Deck extends Component {
+	state = {
+		opacity: new Animated.Value(0),
+	}
+	
+	componentWillMount() {
+		const { opacity } = this.state
+		var self = this
+		console.log(this.props.navigation.state.params)		
+		Animated.timing(opacity, {toValue: 1, duration: 1000}).start()
+	}
+	
 	render() {
 		const {decks, navigation} = this.props;
 		const title = navigation.state.params.deckTitle;
 		const deck = decks[navigation.state.params.deckTitle];
-		console.log(deck.questions)
+		const {opacity} = this.state;
 				
 
 		return (
-			<View style={styles.container}>
+			<Animated.View style={[styles.container, {opacity}]}>
 				<Text style={styles.title}>{deck.title}</Text>
 				<Divider style={{height: 30, backgroundColor: sunshine}} />				
 				{(deck.questions.length === 0) ?
@@ -50,7 +61,7 @@ class Deck extends Component {
 						title="Add question"
 					/>
 				</View>
-			</View>
+			</Animated.View>
 		);
 	}
 }

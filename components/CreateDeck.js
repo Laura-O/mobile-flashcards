@@ -31,8 +31,7 @@ class CreateDeck extends Component {
 		const {title} = this.props;
 
 		return (
-			<View>
-				<Text>New Deck</Text>
+			<View>				
 				<FormLabel>Name</FormLabel>
 				<FormInput
 					placeholder="Deck name"
