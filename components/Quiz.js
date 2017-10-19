@@ -44,7 +44,9 @@ class Quiz extends Component {
 	};
 
 	back = () => {
-		this.props.navigation.goBack();
+		this.props.navigation.navigate('Deck', {
+			deck: this.props.navigation.state.params.deck,
+		});
 	};
 
 	render() {
@@ -63,13 +65,13 @@ class Quiz extends Component {
 		if (this.state.allAsked) {
 			return (
 				<View style={styles.container}>
-					<Text style={styles.title}>
+					<Text style={styles.result}>
 						Result: {Math.floor(score / questions.length * 100)}% Correct
 					</Text>
 					<Button
 						title="Restart Quiz"
 						backgroundColor={sunshine}
-						icon={{name: 'question-answer'}}
+						icon={{name: 'autorenew'}}
 						onPress={() => {
 							this.resetQuiz();
 						}}
@@ -83,7 +85,7 @@ class Quiz extends Component {
 					<Button
 						title="Back to deck"
 						backgroundColor={sunshine}
-						icon={{name: 'question-answer', buttonStyle: styles.buttons}}
+						icon={{name: 'arrow-back', buttonStyle: styles.buttons}}
 						onPress={() => {
 							this.back();
 						}}
@@ -103,7 +105,7 @@ class Quiz extends Component {
 				<Question card={questions[index]} handleAnswer={this.evaluateAnswer} />
 				<View style={styles.infoBox}>
 					<Badge containerStyle={{backgroundColor: drose}}>
-						<Text>
+						<Text style={styles.remainingText}>
 							Question {index + 1} of {questions.length}
 						</Text>
 					</Badge>
@@ -117,15 +119,21 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		alignItems: 'center',
-		justifyContent: 'space-around',
+		justifyContent: 'center',
+	},
+	result: {
+		fontSize: 18,
+		marginTop: 40,		
 	},
 	buttons: {
 		color: aqua,
 	},
 	infoBox: {
-		marginBottom: 20,
-		fontSize: 18,
+		marginBottom: 20,		
 	},
+	remainingText: {
+		fontSize: 18,
+	}
 });
 
 export default connect(state => state)(Quiz);
