@@ -29,7 +29,7 @@ import {GET_DECKS} from '../actions';
 // };
 
 const initialState = {
-	decks: {},	
+	decks: {},
 };
 
 function Deck(state = initialState, action) {

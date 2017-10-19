@@ -52,7 +52,7 @@ class Quiz extends Component {
 	render() {
 		const deck = this.props.navigation.state.params.deck;
 		const questions = this.props.navigation.state.params.deck.questions;
-		const {index, score, allAsked} = this.state;		
+		const {index, score, allAsked} = this.state;
 
 		if (!questions) {
 			return (
@@ -123,17 +123,17 @@ const styles = StyleSheet.create({
 	},
 	result: {
 		fontSize: 18,
-		marginTop: 40,		
+		marginTop: 40,
 	},
 	buttons: {
 		color: aqua,
 	},
 	infoBox: {
-		marginBottom: 20,		
+		marginBottom: 20,
 	},
 	remainingText: {
 		fontSize: 18,
-	}
+	},
 });
 
 export default connect(state => state)(Quiz);

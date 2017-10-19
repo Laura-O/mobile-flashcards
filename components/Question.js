@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {Card, Divider, Button, Badge} from 'react-native-elements';
 import {connect} from 'react-redux';
-import {purple, white, sunshine} from '../utils/colors';
+import {sunshine} from '../utils/colors';
 
 class Question extends Component {
 	state = {

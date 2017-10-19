@@ -13,15 +13,7 @@ import Deck from './components/Deck';
 import {TabNavigator, StackNavigator} from 'react-navigation';
 import {Constants} from 'expo';
 import {setLocalNotification} from './utils/notifications';
-import {
-	aqua,
-	lavender,
-	white,
-	sky,
-	black,
-	watermelon,
-	carbon,
-} from './utils/colors';
+import {aqua, lavender, black} from './utils/colors';
 
 const store = createStore(reducer);
 
