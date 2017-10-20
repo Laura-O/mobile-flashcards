@@ -89,30 +89,13 @@ const MainNavigator = StackNavigator({
 });
 
 export default class App extends React.Component {
-	constructor() {
-    super();
-    this.state = {
-      isReady: false
-    };
-  }
-	
-	async componentWillMount() {
-    await Expo.Font.loadAsync({
-			MaterialIcons: require("@expo/vector-icons/fonts/MaterialIcons.ttf"),
-      Ionicons: require("@expo/vector-icons/fonts/Ionicons.ttf")
-    });
-
-    this.setState({ isReady: true });
-  }
 	
 	componentDidMount() {
 		setLocalNotification();
 	}
 
 	render() {
-		if (!this.state.isReady) {
-      return <Expo.AppLoading />;
-    }
+	
 		return (
 			<Provider store={store}>
 				<View style={{flex: 1}}>

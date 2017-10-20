@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import Question from './Question.js';
-import {Card, Divider, Button, Badge} from 'react-native-elements';
-import {sunshine, aqua, drose} from '../utils/colors';
+import {sunshine, aqua, drose, white} from '../utils/colors';
+import { FontAwesome, Entypo } from '@expo/vector-icons'
 import {
 	clearLocalNotification,
 	setLocalNotification,
@@ -68,34 +68,22 @@ class Quiz extends Component {
 					<Text style={styles.result}>
 						Result: {Math.floor(score / questions.length * 100)}% Correct
 					</Text>
-					<Button
-						title="Restart Quiz"
-						backgroundColor={sunshine}
-						icon={{name: 'autorenew'}}
+					<TouchableOpacity						
+						style={styles.button}						
 						onPress={() => {
 							this.resetQuiz();
 						}}
-						buttonStyle={{
-							borderRadius: 0.5,
-							marginLeft: 0,
-							marginRight: 0,
-							marginTop: 20,
-						}}
-					/>
-					<Button
-						title="Back to deck"
-						backgroundColor={sunshine}
-						icon={{name: 'arrow-back', buttonStyle: styles.buttons}}
+						>
+					<Text style={styles.buttonText}>Restart Quiz</Text>
+					</TouchableOpacity>
+					<TouchableOpacity
+						style={styles.button}						
 						onPress={() => {
 							this.back();
-						}}
-						buttonStyle={{
-							borderRadius: 0.2,
-							marginLeft: 0,
-							marginRight: 0,
-							marginTop: 20,
-						}}
-					/>
+						}}						
+					>
+					<Text style={styles.buttonText}>Back to deck</Text>
+				</TouchableOpacity>
 				</View>
 			);
 		}
@@ -103,12 +91,10 @@ class Quiz extends Component {
 		return (
 			<View style={styles.container}>
 				<Question card={questions[index]} handleAnswer={this.evaluateAnswer} />
-				<View style={styles.infoBox}>
-					<Badge containerStyle={{backgroundColor: drose}}>
+				<View style={styles.infoBox}>					
 						<Text style={styles.remainingText}>
 							Question {index + 1} of {questions.length}
-						</Text>
-					</Badge>
+						</Text>					
 				</View>
 			</View>
 		);
@@ -133,6 +119,20 @@ const styles = StyleSheet.create({
 	},
 	remainingText: {
 		fontSize: 18,
+	},
+	button: {
+		alignItems: 'center',
+		flexDirection: 'row',
+		borderRadius: 20,
+		width: 200,
+		height: 40,
+		backgroundColor: sunshine,
+		justifyContent: 'center',
+		margin: 20,
+	},
+	buttonText: {
+		marginLeft: 5,
+		color: white,		
 	},
 });
 

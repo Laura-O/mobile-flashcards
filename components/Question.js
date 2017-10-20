@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import {Card, Divider, Button, Badge} from 'react-native-elements';
 import {connect} from 'react-redux';
-import {sunshine} from '../utils/colors';
+import {sunshine, white} from '../utils/colors';
+import {MaterialIcons, Entypo} from '@expo/vector-icons';
 
 class Question extends Component {
 	state = {
@@ -18,40 +18,30 @@ class Question extends Component {
 			return (
 				<View style={styles.container}>
 					<View style={styles.card}>
-						<Card title="Answer">
 							<Text style={styles.question}>{this.props.card.answer}</Text>
 
-							<Button
-								title="Correct"
+							<TouchableOpacity
+								style={styles.button}
 								backgroundColor={sunshine}
 								icon={{name: 'thumb-up'}}
 								onPress={() => {
 									this.checkAnswer();
 									this.props.handleAnswer(true);
 								}}
-								buttonStyle={{
-									borderRadius: 0.2,
-									marginLeft: 0,
-									marginRight: 0,
-									marginTop: 20,
-								}}
-							/>
-							<Button
-								title="Incorrect"
-								backgroundColor={sunshine}
-								icon={{name: 'thumb-down'}}
+							>
+								<MaterialIcons name="thumb-up" color={white} size={20} />
+								<Text style={styles.buttonText}>Correct</Text>
+							</TouchableOpacity>
+							<TouchableOpacity
+								style={styles.button}								
 								onPress={() => {
 									this.checkAnswer();
 									this.props.handleAnswer(false);
 								}}
-								buttonStyle={{
-									borderRadius: 0.2,
-									marginLeft: 0,
-									marginRight: 0,
-									marginTop: 20,
-								}}
-							/>
-						</Card>
+							>
+								<MaterialIcons name="thumb-down" color={white} size={20} />
+								<Text style={styles.buttonText}>Incorrect</Text>
+							</TouchableOpacity>						
 					</View>
 				</View>
 			);
@@ -60,21 +50,15 @@ class Question extends Component {
 		return (
 			<View style={styles.container}>
 				<View style={styles.card}>
-					<Card title="Question">
-						<Text style={styles.question}>{this.props.card.question}</Text>
-						<Button
-							onPress={this.checkAnswer}
-							title="Show Answer"
-							backgroundColor={sunshine}
-							icon={{name: 'visibility'}}
-							buttonStyle={{
-								borderRadius: 0.2,
-								marginLeft: 0,
-								marginRight: 0,
-								marginTop: 20,
-							}}
-						/>
-					</Card>
+					<Text style={styles.question}>{this.props.card.question}</Text>
+					<TouchableOpacity
+						onPress={this.checkAnswer}
+						style={styles.button}
+						icon={{name: 'visibility'}}
+					>
+						<Entypo name="eye" color={white} size={20} />
+						<Text style={styles.buttonText}>Show Answer</Text>
+					</TouchableOpacity>
 				</View>
 			</View>
 		);
@@ -90,7 +74,9 @@ const styles = StyleSheet.create({
 		marginRight: 30,
 	},
 	card: {
-		flex: 8,
+		backgroundColor: white,
+		padding: 20,
+		alignItems: 'center',
 	},
 	title: {
 		fontSize: 32,
@@ -103,6 +89,20 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		flex: 8,
 	},
+	button: {
+		alignItems: 'center',
+		flexDirection: 'row',
+		borderRadius: 20,
+		width: 200,
+		height: 40,
+		backgroundColor: sunshine,
+		justifyContent: 'center',
+		margin: 20,
+	},
+	buttonText: {
+		marginLeft: 5,
+		color: white,		
+	}
 });
 
 export default connect(state => state)(Question);

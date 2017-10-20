@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import Deck from './Deck';
-import {List, ListItem} from 'react-native-elements';
 import {white, black, drose} from '../utils/colors';
 import {getDecks} from '../actions';
 import {getDecksAPI} from '../utils/api';
@@ -23,18 +22,21 @@ class DeckList extends Component {
 			);
 		}
 		return (
-			<List>
+			<View>
 				{Object.keys(this.props.decks).map(deck => (
-					<ListItem
-						key={deck}
-						onPress={() =>
-							this.props.navigation.navigate('Deck', {
-								deckTitle: this.props.decks[deck].title,
-							})}
-						title={this.props.decks[deck].title}
-					/>
+					<View key={deck} style={styles.deck}>
+						<TouchableOpacity
+							style={styles.button}
+							onPress={() =>
+								this.props.navigation.navigate('Deck', {
+									deckTitle: this.props.decks[deck].title,
+								})}
+						>
+							<Text style={styles.title}>{this.props.decks[deck].title}</Text>
+						</TouchableOpacity>
+					</View>
 				))}
-			</List>
+			</View>
 		);
 	}
 }
@@ -43,20 +45,23 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		alignItems: 'center',
-		justifyContent: 'center',
+		justifyContent: 'flex-start',
 	},
 	deck: {
-		backgroundColor: drose,
-		color: black,
+		backgroundColor: drose,		
 		borderRadius: 2,
-		justifyContent: 'center',
-		fontSize: 32,
-		textAlign: 'center',
+		justifyContent: 'center',		
 		marginTop: 20,
 	},
 	warning: {
 		fontSize: 18,
 	},
+	button: {
+		alignItems: 'center',
+	},
+	title: {
+		fontSize: 20,
+	}
 });
 
 export default connect(state => state)(DeckList);

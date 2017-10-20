@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, TouchableOpacity, Animated} from 'react-native';
 import {connect} from 'react-redux';
-import {Divider, Button, Badge} from 'react-native-elements';
-import {lavender, aqua, black, sunshine, drose, gray} from '../utils/colors';
+import {lavender, aqua, black, sunshine, drose, gray, white} from '../utils/colors';
+import {Entypo, FontAwesome, MaterialIcons} from '@expo/vector-icons';
 
 class Deck extends Component {
 	state = {
@@ -24,42 +24,43 @@ class Deck extends Component {
 		return (
 			<Animated.View style={[styles.container, {opacity}]}>
 				<Text style={styles.title}>{deck.title}</Text>
-				<Divider style={{height: 30, backgroundColor: sunshine}} />
+
 				{deck.questions.length === 0 ? (
 					<Text style={styles.warning}>Please add questions to your set!</Text>
 				) : (
-					<Badge containerStyle={{backgroundColor: aqua}}>
+					<TouchableOpacity style={{backgroundColor: aqua}}>
 						<Text>{deck.questions.length} Questions</Text>
-					</Badge>
+					</TouchableOpacity>
 				)}
-				<View style={styles.buttons}>
+				<View style={styles.buttonArea}>
 					{deck.questions.length === 0 ? (
-						<Button
-							large
+						<TouchableOpacity
+							style={styles.button}
 							backgroundColor={gray}
-							icon={{name: 'question-answer'}}
-							buttonStyle={{borderRadius: 20, width: 200, margin: 20}}
-							title="Not available"
-						/>
+							disabled={true}							
+							icon={{name: 'question-answer'}}							
+						>
+							<MaterialIcons name={'error-outline'} size={20} color={white} />
+							<Text style={styles.buttonTitle}>Not available</Text>
+						</TouchableOpacity>
 					) : (
-						<Button
-							large
-							backgroundColor={sunshine}
-							icon={{name: 'question-answer'}}
+						<TouchableOpacity
+							style={styles.button}
 							onPress={() => navigation.navigate('Quiz', {deck: deck})}
-							buttonStyle={{borderRadius: 20, width: 200, margin: 20}}
-							title="Start quiz"
-						/>
+						>
+							<FontAwesome name={'question-circle-o'} size={20} color={white} />
+							<Text style={styles.buttonTitle}>Start quiz</Text>
+						</TouchableOpacity>
 					)}
-					<Button
-						large
-						icon={{name: 'add-circle-outline'}}
-						backgroundColor={sunshine}
+					<TouchableOpacity
+						style={styles.button}
 						onPress={() =>
 							navigation.navigate('AddQuestion', {deck: deck.title})}
 						buttonStyle={{borderRadius: 20, width: 200}}
-						title="Add question"
-					/>
+					>
+						<Entypo name={'squared-plus'} size={20} color={white} />
+						<Text style={styles.buttonTitle}>Add Question</Text>
+					</TouchableOpacity>
 				</View>
 			</Animated.View>
 		);
@@ -77,13 +78,25 @@ const styles = StyleSheet.create({
 		fontSize: 40,
 		color: black,
 	},
-	buttons: {
+	buttonArea: {
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
+		margin: 20,
 	},
-	buttonStyle: {
-		color: drose,
+	button: {
+		alignItems: 'center',
+		flexDirection: 'row',
+		borderRadius: 20,
+		width: 200,
+		height: 40,
+		backgroundColor: sunshine,
+		justifyContent: 'center',
+		margin: 20,
+	},
+	buttonTitle: {
+		marginLeft: 5,
+		color: white,		
 	},
 	warning: {
 		color: lavender,
